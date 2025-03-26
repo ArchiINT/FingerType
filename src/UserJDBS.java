@@ -21,8 +21,8 @@ public class UserJDBS {
             ResultSet rs = statement.executeQuery("select * from user");
             default_time = rs.getInt("bTime");
             default_spm = (float)rs.getInt("bspm");
-            if (ScoreGUI.spm > default_spm) {
-                default_spm = ScoreGUI.spm;
+            if (ScoreGUI.getSpm() > default_spm) {
+                default_spm = ScoreGUI.getSpm();
                 String query = "UPDATE user SET bspm = ? WHERE id = 1";
 
                 try (PreparedStatement pstmt = connection.prepareStatement(query)) {

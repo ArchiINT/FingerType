@@ -19,8 +19,7 @@ import javax.swing.KeyStroke;
 
 public class ScoreGUI {
     private static JTextArea input = new JTextArea();
-    public static float spm;
-
+    private static float spm;
     public ScoreGUI() {
     }
 
@@ -28,7 +27,7 @@ public class ScoreGUI {
         TextListener h = MainGui.getTextListener();
         int incorrect = h.getIncorrectImport();
         int totalTimeSeconds = MainGui.getInputTime();
-        float te = (float)(MainGui.infield.getText().length() - incorrect);
+        float te = (float)(MainGui.getInfield().getText().length() - incorrect);
         spm = te / (float)totalTimeSeconds * 60.0F;
         spm = (float)Math.round(spm * 100.0F) / 100.0F;
         UserJDBS.record();
@@ -59,8 +58,8 @@ public class ScoreGUI {
         scorePanel.setLayout(new FlowLayout(1, 50, 20));
         scorePanel.setBackground(new Color(72, 72, 72));
         scorePanel.add(createSquarePanel("SPM:  " + spm + "<br>WPM: " + wpm));
-        scorePanel.add(createSquarePanel("Incorrect: " + incorrect + "<br>Correct: " + (MainGui.infield.getText().length() - incorrect)));
-        scorePanel.add(createSquarePanel("Time: " + MainGui.timers));
+        scorePanel.add(createSquarePanel("Incorrect: " + incorrect + "<br>Correct: " + (MainGui.getInfield().getText().length() - incorrect)));
+        scorePanel.add(createSquarePanel("Time: " + MainGui.getTimers()));
         scoreSection.add(Box.createVerticalStrut(20));
         scoreSection.add(scoreLabel);
         scoreSection.add(Box.createVerticalStrut(50));
@@ -83,6 +82,7 @@ public class ScoreGUI {
         recordSection.add(recordPanel);
         panel.add(scoreSection);
         panel.add(recordSection);
+        frame.add(input);
         frame.add(panel);
         frame.setVisible(true);
     }
@@ -96,4 +96,8 @@ public class ScoreGUI {
         panel.add(label);
         return panel;
     }
+    public static float getSpm() {
+        return spm;
+    }
+
 }

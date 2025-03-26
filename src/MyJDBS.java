@@ -6,17 +6,17 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class MyJDBS {
-    private static String[] symbols = {";", ":", "/", "'", "\"", "@",};
-    private static char[] ponctuation = {',','.','!','?'};
+    private static final String[] symbols = {";", ":", "/", "'", "\"", "@",};
+    private static final char[] ponctuation = {',','.','!','?'};
     public static void base() {
         Random random = new Random();
 
         //       boolean addPunctuation = "Ponctuation".equals(selectAdd);
-        String temp = MainGui.selectWords;
-        String language = "engwords";
-        if (MainGui.selectLanguage.equals("English")){
+        String temp = MainGui.getSelectWords();
+        String language = null;
+        if (MainGui.getSelectLanguage().equals("English") || MainGui.getSelectLanguage().equals("language")){
             language = "engwords";
-        } else if (MainGui.selectLanguage.equals("Deutsch")) {
+        } else if (MainGui.getSelectLanguage().equals("Deutsch")) {
             language = "deuwords";
         }
         ArrayList<String> words = new ArrayList<>();
@@ -47,7 +47,7 @@ public class MyJDBS {
 //        };dinser
 
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:words.db");
-             Statement statement = connection.createStatement();
+             Statement statement = connection.createStatement()
         ){
 //            statement.executeUpdate("DROP TABLE IF EXISTS deuwords");
 //            statement.setQueryTimeout(30);
@@ -74,9 +74,9 @@ public class MyJDBS {
 
                 String word = rs.getString("word");
 
-                // Проверка, есть ли выбранные элементы для добавки
-                if (MainGui.selectAdd != null) {
-                    for (String add : MainGui.selectAdd) {
+
+                if (MainGui.getSelectAdd() != null) {
+                    for (String add : MainGui.getSelectAdd()) {
                         if (add.equals("Ponctuation") && random.nextBoolean()) {
                             word += ponctuation[random.nextInt(ponctuation.length)];
                         } else if (add.equals("Symbols") && random.nextBoolean()) {
@@ -101,7 +101,7 @@ public class MyJDBS {
             //System.out.println("not in while");
 
             //System.out.println(words);
-            MainGui.outfield.setText(String.join(" ", words));
+            MainGui.getOutfield().setText(String.join(" ", words));
 
         } catch (SQLException e) {
             e.printStackTrace();

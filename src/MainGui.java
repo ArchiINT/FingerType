@@ -18,13 +18,15 @@ public class MainGui extends JFrame {
     final static String[] time = { "15s", "30s", "60s"};
     final static String[] words = { "25", "50", "100"};
 
-    public static Color MYColor = Color.GRAY;
 
-    public static JTextArea outfield = new JTextArea();
-    public static JTextArea infield = new JTextArea();
-    public static String selectWords;
-    public static String selectLanguage;
-    public static java.util.List<String> selectAdd;
+
+    private static Color MYColor = Color.GRAY;
+
+    private static JTextArea outfield = new JTextArea();
+    private static JTextArea infield = new JTextArea();
+    private static String selectWords;
+    private static String selectLanguage;
+    private static java.util.List<String> selectAdd;
     private static TextListener textListener;
     private static int inputTime = 0;
     private static Timer timer;
@@ -33,21 +35,24 @@ public class MainGui extends JFrame {
     public static int wordCount;
     private static boolean isStartGenerated = false;
     //Combobox create
-    public static JComboBox<String> languagesComboBox = cBox(languages, "language");
-    public static JRadioButton greenColor = new JRadioButton();
-    public static JRadioButton defaultColor = new JRadioButton();
+    private static JComboBox<String> languagesComboBox = cBox(languages, "language");
+    private static JRadioButton greenColor = new JRadioButton();
+    private static JRadioButton defaultColor = new JRadioButton();
     //    public static JComboBox<String> modeComboBox = cBox(mode, "mode");
     //public static JComboBox<String> addComboBox = cBox(add, "add");
-    public static JComboBox<String> timeComboBox = cBox(time, "time");
-    public static JComboBox<String> wordsComboBox = cBox(words, "words");
+    private static JComboBox<String> timeComboBox = cBox(time, "time");
+    private static JComboBox<String> wordsComboBox = cBox(words, "words");
 
 
-    public static int min = 0;
-    public static int sec = inputTime;
+    private static int min = 0;
+    private static int sec = inputTime;
 
-    public static JLabel label = new JLabel( min +" : "+ sec + "s");
+    private static JLabel label = new JLabel( min +" : "+ sec + "s");
 
-    public static String timers = String.format("%02d:%02d", (inputTime % 3600) / 60,inputTime % 60);
+    private static String timers = String.format("%02d:%02d", (inputTime % 3600) / 60,inputTime % 60);
+
+
+
     public static void main (String[] args) {
 
         //Databank inout imitation
@@ -56,7 +61,7 @@ public class MainGui extends JFrame {
         //Main Frame and panel
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 850);
+        frame.setSize(1000, 950);
         //JPanel mpanel = new JPanel(new BorderLayout());
         JPanel panel = new JPanel(new BorderLayout());
         panel.setLayout(new FlowLayout(FlowLayout.LEFT, 50, 20));
@@ -116,7 +121,7 @@ public class MainGui extends JFrame {
 
         //Text Fields
         //Output field, where Databank outputs the content
-        outfield.setBounds(34,100,900,650);
+        outfield.setBounds(34,100,900,750);
         outfield.setBackground(new Color(171,171,171));
         outfield.setFont(new Font("Mangal",Font.BOLD,28 ));
         outfield.setLineWrap(true);
@@ -124,17 +129,22 @@ public class MainGui extends JFrame {
         outfield.setTabSize(50);
         outfield.setEditable(false);
         outfield.setBorder(new EmptyBorder(10,10,10,10));
-
+        JScrollPane scrollPane = new JScrollPane(outfield);
+        scrollPane.setBounds(34, 100, 900, 750);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         //Combobox Words Listener
-
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 wordsComboBox.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        wordsComboBox.requestFocusInWindow();
+
                         selectWords = (String) wordsComboBox.getSelectedItem();
                         selectAdd = list.getSelectedValuesList();
+                        infield.setText("");
 
                         MyJDBS.base();
 
@@ -144,6 +154,9 @@ public class MainGui extends JFrame {
                 languagesComboBox.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        languagesComboBox.requestFocusInWindow();
+                        infield.setText("");
+
                         selectLanguage = (String) languagesComboBox.getSelectedItem();
 
                         MyJDBS.base();
@@ -154,6 +167,7 @@ public class MainGui extends JFrame {
                     @Override
                     public void valueChanged(ListSelectionEvent e) {
                         selectAdd = list.getSelectedValuesList();
+                        infield.setText("");
 
                         MyJDBS.base();
                     }
@@ -165,9 +179,7 @@ public class MainGui extends JFrame {
         //outfield.setText(text);
 
         //ScrollPanel
-        JScrollPane scrollPane = new JScrollPane(outfield);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
         //
         //String[] temp;
         //User input field
@@ -316,8 +328,8 @@ public class MainGui extends JFrame {
         panel.add(radpanel);
         panel.add(list);
 
+
         frame.add(scrollPane);
-        frame.add(outfield);
         frame.add(infield);
         frame.add(startButton);
         frame.add(endButton);
@@ -375,5 +387,34 @@ public class MainGui extends JFrame {
 //        });
 //
 //    }
+
+
+    public static java.util.List<String> getSelectAdd() {
+        return selectAdd;
+    }
+
+    public static Color getMYColor() {
+        return MYColor;
+    }
+
+    public static JTextArea getOutfield() {
+        return outfield;
+    }
+
+    public static JTextArea getInfield() {
+        return infield;
+    }
+
+    public static String getSelectWords() {
+        return selectWords;
+    }
+
+    public static String getSelectLanguage() {
+        return selectLanguage;
+    }
+
+    public static String getTimers() {
+        return timers;
+    }
 }
 

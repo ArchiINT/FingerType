@@ -8,10 +8,10 @@ import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 
 public class TextListener implements DocumentListener {
-    private final JTextArea outfield;
-    public JTextArea infield;
-    public int i = 0;
-    public int incorrect;
+    private JTextArea outfield;
+    private JTextArea infield;
+    private int i = 0;
+    private int incorrect;
     private int previousIncorrect;
     private String userInput;
     private int incorrectImport;
@@ -58,7 +58,7 @@ public class TextListener implements DocumentListener {
 
             if (this.userInput.charAt(this.i) == mainText.charAt(this.i)) {
                 try {
-                    highlighter.addHighlight(this.i, this.i + 1, new DefaultHighlighter.DefaultHighlightPainter(MainGui.MYColor));
+                    highlighter.addHighlight(this.i, this.i + 1, new DefaultHighlighter.DefaultHighlightPainter(MainGui.getMYColor()));
                 } catch (BadLocationException ex) {
                     ex.printStackTrace();
                 }
