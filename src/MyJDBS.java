@@ -13,8 +13,8 @@ public class MyJDBS {
 
         //       boolean addPunctuation = "Ponctuation".equals(selectAdd);
         String temp = MainGui.getSelectWords();
-        String language = null;
-        if (MainGui.getSelectLanguage().equals("English") || MainGui.getSelectLanguage().equals("language")){
+        String language = MainGui.getSelectLanguage();
+        if ((language == "English") || (language == "language")){
             language = "engwords";
         } else if (MainGui.getSelectLanguage().equals("Deutsch")) {
             language = "deuwords";
