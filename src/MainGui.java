@@ -18,10 +18,8 @@ public class MainGui extends JFrame {
     final static String[] time = { "15s", "30s", "60s"};
     final static String[] words = { "25", "50", "100"};
 
-
-
+    //Varibels
     private static Color MYColor = Color.GRAY;
-
     private static JTextArea outfield = new JTextArea();
     private static JTextArea infield = new JTextArea();
     private static String selectWords;
