@@ -59,7 +59,7 @@ public class MainGui extends JFrame {
         //Main Frame and panel
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 950);
+        frame.setSize(1000, 750);
         //JPanel mpanel = new JPanel(new BorderLayout());
         JPanel panel = new JPanel(new BorderLayout());
         panel.setLayout(new FlowLayout(FlowLayout.LEFT, 50, 20));
@@ -119,7 +119,7 @@ public class MainGui extends JFrame {
 
         //Text Fields
         //Output field, where Databank outputs the content
-        outfield.setBounds(34,100,900,750);
+        outfield.setBounds(34,100,900,550);
         outfield.setBackground(new Color(171,171,171));
         outfield.setFont(new Font("Mangal",Font.BOLD,28 ));
         outfield.setLineWrap(true);
@@ -128,7 +128,7 @@ public class MainGui extends JFrame {
         outfield.setEditable(false);
         outfield.setBorder(new EmptyBorder(10,10,10,10));
         JScrollPane scrollPane = new JScrollPane(outfield);
-        scrollPane.setBounds(34, 100, 900, 750);
+        scrollPane.setBounds(34, 100, 900, 600);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         //Combobox Words Listener

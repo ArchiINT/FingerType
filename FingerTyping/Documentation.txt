@@ -1,0 +1,27 @@
+
+
+Finger Typing Project:
+
+    -Das ist ein Programm, bei dem der Benutzer einen zufällig generierten Text erhält, den er eingeben muss.
+
+    -Die App wurde mit JDK 21 erstellt und verwendet SQLite, sodass man SQL nicht selbst einrichten muss.
+
+    -Die App nutzt das Swing-Framework und besteht aus 5 Klassen: "Main Benutzer Fenster", "Score Fenster", "Listener zur Bearbeitung der            	Eingabe" und zwei Klassen für die Datenbank.
+
+Für Benutzer und Entwickler:
+    -Es gibt Tastenkombinationen (bei MainField: esc = score Menu anzurufen, Enter = tippen zu starten. In scoreMenu: esc = ScoreMenu 	schießen)
+
+    -Um den Text zu ändern, muss man in der MyJDBS-Klasse ein Array auskommentieren und seine Wörter hinzufügen. Danach den kommentierten 	"Statement-Code" ausführen. Nach dem ersten Start muss der Code wieder auskommentiert werden.
+
+    -Die meisten Funktionen (Buttons, Textfelder, Tastenkombinationen) befinden sich in der MainGui-Klasse.
+
+Fehler:
+
+    -Das "Selected Item" in der Combobox funktioniert nicht oder nicht wie erwartet. (Dieser Fehler befindet sich in der MainGui-Klasse).
+    -Falsche Eingabe Berechnung kann sich immer summieren. (Das hat keinen Einfluss auf die Anzeige im ScoreMenu)
+
+
+
+WIE STARTEN:
+
+-Man muss eine Sprache Auswählen, danach Anzahl der Worts und AddList(nicht unbedingt). Danach Start Button oder Enter clicken, der Timer läuft nur wenn man erste Symbol eingibt. Um Score zu zeigen, muss man End Button oder Esc clicken, mit Esc kann man den auch schließen. In Score Menu kann man sein beste spm(symbols pro minute) sehen. Mit Button "Reset Score" kann man Record auf 0 setzen.
